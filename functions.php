@@ -34,6 +34,12 @@ function skc_register_js()
 add_action('widgets_init', 'skc_add_section_widget');
 function skc_add_section_widget()
 {
+    // Call widget in theme from twenty forteen
+//    require get_template_directory() . '/inc/widgets.php';
+//    register_widget( 'Skc_Recent_News' );
+    require get_template_directory() . '/inc/widgets.php';
+    register_widget('Skc_Breaking_News');
+    
     register_sidebar(array(
         'id' => 'skc_services_section',
         'name' => __('Services section'),
@@ -84,29 +90,57 @@ function modify_read_more_link()
     return '<p><a href="'.get_permalink().'" class="btn btn-default more-link" role="button">'._( 'Continue reading &raquo;', 'skcomputing' ).'</a></p>';
 }
 
-add_shortcode('get_username_menu', 'get_username_in_menu');
-function get_username_in_menu($atts, $content)
+add_shortcode('get_username_menu', 'get_username_menu');
+function get_username_menu($args, $content)
 {
+    $a = $args;
     $username = wp_get_current_user();
-    return '<a href="'.$atts['href'].'" target="'.$atts['target'].'">'.$content. ' ' .$username->display_name.'</a>';
+    $a->title = $content. ' ' .$username->display_name;
+    return $a;
+}
+
+add_shortcode('top_ancestor_menu', 'top_ancestor_menu');
+function top_ancestor_menu($args, $content)
+{
+    $a = $args;
+    if($args->url != 'javascript:void(0)')
+    {
+        $args->url = 'javascript:void(0)';
+    }
+//    var_dump($args->url);
+    return $a;
 }
 
 add_filter('wp_nav_menu_objects', 'active_shortcode_menu');
 function active_shortcode_menu($items)
 {
-    foreach ($items as $item) {
-        
-        if(!empty($item->title) && ($item->description === "user_menu"))
+    foreach ($items as $item)
+    {
+        if(!empty($item->title) && !empty($item->description))
         {
             global $shortcode_tags;
-            $shortcode = 'get_username_menu';
+//            var_dump($item->description);
+            $params = explode(',', $item->description);
             
-            $atts = array(); // Shortcode attributes.
-            $content = $item->title; // Content for the shortcode.
-            
-            $item->title = call_user_func($shortcode_tags[$shortcode], $atts, $content, $shortcode);
+            foreach ($params as $key => $value)
+            {
+                $shortcode = '';
+                switch($value)
+                {
+                    case 'username_menu':
+                        $shortcode = 'get_'.$item->description;
+                        break;
+                    case 'top_ancestor_menu':
+                        $shortcode = $item->description;
+                        break;
+                    default:
+                        break;
+                }
+                $args = $item; // Shortcode attributes.
+                $content = $item->title; // Content for the shortcode.
+                $item = call_user_func($shortcode_tags[$shortcode], $args, $content, $shortcode);
+            }
         }
-//        var_dump($item->title);
     }
     
     return $items;
@@ -217,4 +251,21 @@ function mytheme_comment($comment, $args, $depth)
     <?php endif; ?>
 <?php
 }
+
+//add_filter("walker_nav_menu_start_el", "shortcode_menu" , 10 , 2);
+///**
+//* Hook to implement shortcode logic inside WordPress nav menu items
+//* Shortcode code can be added using WordPress menu admin menu in description field
+//*/
+//function shortcode_menu( $item_output, $item ) {
+//    if ( !empty($item->title))
+//    {
+//        $output = do_shortcode($item->title);
+//        if ($output != $item->title)
+//        {
+//            $item_output = $output;
+//        }
+//    }
+//    return $item_output;
+//}
 ?>
