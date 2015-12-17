@@ -1,0 +1,354 @@
+/*
+Theme name: SK Computing
+Author: SK Computing
+Author URI: http://www.skcomputing.ch
+Description: General Theme for SK Computing.
+Version: 0.1
+Tags: orange (#f59526)
+*/
+
+/**
+ * Table of Contents as a ordering ordonance from Twenty Sixteen
+ *
+ * 1.0 - Normalize
+ * 2.0 - Genericons
+ * 3.0 - Typography
+ * 4.0 - Elements
+ * 5.0 - Forms
+ * 6.0 - Navigation
+ *   6.1 - Links
+ *   6.2 - Menus
+ * 7.0 - Accessibility
+ * 8.0 - Alignments
+ * 9.0 - Clearings
+ * 10.0 - Widgets
+ * 11.0 - Content
+ *    11.1 - Header
+ *    11.2 - Posts and pages
+ *    11.3 - Post Formats
+ *    11.4 - Comments
+ *    11.5 - Sidebar
+ *    11.6 - Footer
+ * 12.0 - Media
+ *    12.1 - Captions
+ *    12.2 - Galleries
+ * 13.0 - Multisite
+ * 14.0 - Media Queries
+ *    14.1 - >= 710px
+ *    14.2 - >= 783px
+ *    14.3 - >= 910px
+ *    14.4 - >= 985px
+ *    14.5 - >= 1200px
+ * 15.0 - Print
+ */
+
+
+/**
+ * 1.0 - Normalize
+ */
+html{
+    font-size: 62.5%; /* sets the base font to 10px for easier math http://bitsofco.de/css-font-sizing/*/
+}
+
+* {margin:0;padding:0;} /* reseting all margin and padding for good start */
+
+body{
+    background: #fff;
+    font-family: 'Open Sans', sans-serif !important;
+    font-size: 14px; /* fallback for em */
+    font-size: 1.4em;
+    margin: 0;
+}
+
+body.home{
+    background: url('http://www.skcomputing.ch/wp-content/uploads/2015/05/bg.jpg') no-repeat center center fixed !important;
+}
+
+/*******************************************************************************
+* 6.0 - Navigation
+*******************************************************************************/
+nav a,
+nav a:hover{
+    text-decoration: none;
+}
+
+nav a:link,
+nav a:visited{
+    color: #999;
+}
+
+nav a:hover{
+    color: #f59526;
+}
+
+nav ul{
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li{
+    list-style: none;
+}
+/*******************************************************************************
+* 6.1 - Links
+*******************************************************************************/
+a:link,
+a:visited {
+    color: #000;
+}
+
+a:hover {
+    color: #f59526;
+}
+
+/*******************************************************************************
+* 6.2 - Menus
+*******************************************************************************/
+.skc-nav-primary{
+    float: right;
+}
+
+.skc-nav-primary ul li{
+    display: inline-block !important;
+}
+.skc-nav-primary ul li a:link,
+.skc-nav-primary ul li a:visited{
+    display: block;
+    margin: 0px 15px;
+    padding: 10px 10px;
+}
+
+.skc-nav-primary ul li.current-menu-item a:link,
+.skc-nav-primary ul li.current-menu-item a:visited{
+    color: #f59526;
+}
+
+/*******************************************************************************
+* Custome class for footer menu
+*******************************************************************************/
+.skc-nav-footer{
+    float: left;
+    width: 75%;
+}
+
+/*******************************************************************************
+* Custome class for menu dropdown
+*******************************************************************************/
+.menu-item-has-children{
+    position: relative;
+}
+
+.menu-item-has-children > a:after{
+    content: ' ▼';
+    font-size: 0.75em;
+}
+
+.sub-menu{
+    background-color: #fefefe;
+    box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.2);
+    display: none;
+    min-width: 160px;
+    position: absolute;
+}
+
+.sub-menu a{
+    display: block;
+}
+
+.menu-item-has-children:hover .sub-menu {
+    display: block;
+}
+
+/******************************************************************************
+* 11.1 - Header
+*******************************************************************************/
+header, footer{
+    background-color: #fff;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 10000;
+}
+
+header{
+    border-bottom: 1px solid #f59526;
+    height: 82px;
+    margin: 0;
+    top: 0;
+}
+/*******************************************************************************
+* Footer
+*******************************************************************************/
+footer{
+    border-top: 1px solid #f59526;
+    bottom: 0;
+    margin: 0px;
+    min-height: 50px;
+}
+
+/*******************************************************************************
+* Article
+*******************************************************************************/
+article nav{
+    font-size: 0.8em;
+}
+
+article nav ul {
+    display: inline-block;
+}
+
+/* display article categories in a line */
+article nav ul > li {
+    display: inline;
+}
+
+/* keep list in article indented */
+article div ul {
+    padding-left: 40px;
+}
+.skc-post-home {
+    width: 24%;
+    display: inline-block !important;
+    vertical-align: top;
+}
+/*******************************************************************************
+* Section
+*******************************************************************************/
+section{
+    margin: 0px;
+    padding: 25px 0px;
+}
+
+.skc-logo{
+    display: block;
+    float: left;
+    width: 250px;
+}
+
+.skc-logo a img{
+    width: 100%;
+}
+
+
+
+/*******************************************************************************
+* Custome class for container
+*******************************************************************************/
+.skc-home-wraper{
+    margin-top: 400px;
+    margin-bottom: 100px;
+}
+
+.skc-container{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/*******************************************************************************
+* customer class for content
+*******************************************************************************/
+.skc-page{
+   padding-bottom: 150px;
+   padding-top: 100px;
+}
+
+
+/*******************************************************************************
+* customer class for breadcrub
+*******************************************************************************/
+.breadcrumb li{
+    display: inline-block;
+}
+
+.breadcrumb li.current_page_item a:link,
+.breadcrumb li.current_page_item a:visited{
+    color: #f59526;
+}
+
+/*******************************************************************************
+* custom class for footer
+*******************************************************************************/
+.children{
+    -webkit-padding-start: 40px;
+}
+/*******************************************************************************
+* Custome class for google map
+*******************************************************************************/
+#map{
+    height: 250px;
+}
+
+/*******************************************************************************
+* custom class for footer
+*******************************************************************************/
+.skc-copyright-footer-box{
+    box-shadow: 0px 1px 3px 1px #111;
+    float: right;
+    height: 90%;
+    width: 25%;
+}
+
+.skc-social-footer{
+    margin: 20px;
+}
+/*******************************************************************************
+* Miscellaneous
+*******************************************************************************/
+.no-text-decoration{
+    text-decoration: none;
+}
+
+/* aligne element */
+.alignright{
+    float: right;
+}
+
+.alignleft{
+    float: left;
+}
+
+/* align text */
+.text-justify{
+    text-align: justify;
+}
+
+.text-center{
+    text-align: center;
+}
+
+/* background color */
+.bg-color-dgrey{
+    background-color: #272727;
+}
+
+.bg-color-white{
+    background-color: #fff;
+}
+
+/* color */
+.white{
+    color: #fff;
+}
+
+.orange{
+    color: #f59526;
+}
+
+.btn-default:hover{
+    background-color: #f59526;
+}
+
+.col-sm-6:first-child,
+.col-md-4:first-child{
+    padding-left: 0;
+}
+
+.col-sm-6:last-child,
+.col-md-4:last-child{
+    padding-right: 0;
+}
+
+.thumbnail>img{
+    height: 200px;
+}
